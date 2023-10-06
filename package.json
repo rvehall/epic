@@ -11,7 +11,8 @@
     "preview": "electron-vite preview",
     "electron:dev": "cross-env IS_DEV=true electron-forge start",
     "electron:build": "electron-forge make",
-    "electron:package": "electron-forge package"
+    "electron:package": "electron-forge package",
+    "electron:publish": "electron-forge publish"
   },
   "dependencies": {
     "@codemirror/basic-setup": "^0.20.0",

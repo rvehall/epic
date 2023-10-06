@@ -1,8 +1,34 @@
-# React + Vite
+# EPIC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EPIC is an Electron Postman/Insomnia Clone. While it currently has minimal functionality, more featurs are planned.
 
-Currently, two official plugins are available:
+This was created because both Postman and Insomnia are moving/have moved towards requiring accounts and/or paying for the services. These applications are also getting particularly heavy. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Planned features
+
+- History: As a user, I would like to be able to see my recent history so that I can re-run an API call withou typing everything in again.
+- Tabs: As a user, I would like to have tabs so that I can run multiple API calls without clearing out my current settings.
+
+## To Run
+
+To run a local instance, run the following commands:
+
+```bash
+git clone git@github.com:rvehall/epic.git
+cd epic
+npm install
+npm run dev
+```
+
+To run publish, run the following commands:
+
+```bash
+git clone git@github.com:rvehall/epic.git
+cd epic
+npm install
+npm run electron:build
+npm run electron:publish
+```
+
+Artifacts are available at `epic/out/make`
