@@ -1,0 +1,2 @@
+(()=>{"use strict";var e={};(e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})})(e);const o=require("electron"),t=require("path");let r;o.app.whenReady().then((()=>{r=new o.BrowserWindow({}),r.autoHideMenuBar=!0,r.loadFile(t.join(__dirname,"build","index.html"))})),module.exports=e})();
+//# sourceMappingURL=index.js.map

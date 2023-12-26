@@ -11,8 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-out
-.webpack
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +22,6 @@ out
 *.njsproj
 *.sln
 *.sw?
+
+# Electron output folder
+out/*
