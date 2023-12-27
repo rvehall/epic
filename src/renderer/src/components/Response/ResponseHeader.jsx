@@ -15,7 +15,7 @@ const ResponseHeader = ({ response }) => {
   }
   const renderedHeaders = responseHeaders.map(({ key, value, index }) => {
     return (
-      <tr key={index}>
+      <tr key={key}>
         <td className='pb-1'>{key}</td>
         <td>{value}</td>
       </tr>

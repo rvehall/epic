@@ -2,12 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import { EditorView, keymap } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { basicSetup } from 'codemirror';
-// import { EditorState, basicSetup } from '@codemirror/basic-setup';
 import { json } from '@codemirror/lang-json';
 
 const basicExtensions = [
   basicSetup,
-  // keymap.of([defaultTabBinding]),
   json(),
   EditorState.tabSize.of(2),
 ];

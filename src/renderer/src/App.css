@@ -1,13 +1,15 @@
-/* 
-colors: 
-- Brown: #561E18
-- Red: #A82025
-- Tan: #BDA05E
-- Gold: #B18A30
-- Black: #15100C
-*/
+:root {
+  --brown: #561E18;
+  --red: #A82025;
+  --tan: #BDA05E;
+  --gold: #B18A30;
+  --black: #15100C;
+  --off-white: #f8f3f0;
+  --white: #fff;
+}
+
 body {
-  background-color: #f8f3f0;
+  background-color: var(--off-white);
 }
 
 .react-tabs__tab-panel:not(.react-tabs__tab-panel--selected) {
@@ -16,10 +18,10 @@ body {
 
 button {
   padding: 10px;
-  background: #561E18;
-  border: 1px solid #561E18;
+  background: var(--brown);
+  border: 1px solid var(--brown);
   border-radius: 5px;
-  color: #fff;
+  color: var(--white);
   margin: 2px;
 }
 
@@ -30,8 +32,8 @@ button {
 input, select {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #15100C;
-  background: #fff;
+  border: 1px solid var(--black);
+  background: var(--white);;
 }
 
 .url {
@@ -51,17 +53,40 @@ input, select {
 .tab {
   margin: 0 5px 5px auto;
   padding: 1px;
-  border-bottom: 2px solid #15100C;
+  border-bottom: 2px solid var(--black);
 }
 
 .selected-tab {
-  border-bottom: 4px solid #B18A30;
+  border-bottom: 4px solid var(--gold);
 }
 
 .cm-scroller {
-  border: 2px solid #efefef;
+  border: 2px solid var(--off-white);;
 }
 
 .response-status {
   margin-top: 5px;
+}
+
+.parent {
+  width: 100%; 
+}
+.left, .right {
+  float: left; 
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+.url {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important; 
+  width: 160px !important; 
+  height: 1.2em !important; 
+  white-space: nowrap !important;
 }

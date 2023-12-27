@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "main": "./out/main/main.js",
   "description": "EPIC is an Electron Postman/Insomnia Clone",
-  "license" : "Apache-2.0",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "electron-vite dev -w",
     "build": "electron-vite build",
@@ -17,11 +17,13 @@
   "dependencies": {
     "@codemirror/commands": "6.3.2",
     "@codemirror/lang-json": "6.0.1",
-    "@codemirror/view": "6.22.3",
     "@codemirror/state": "6.3.3",
-    "codemirror": "6.0.1",
+    "@codemirror/view": "6.22.3",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "axios": "^1.6.2",
+    "codemirror": "6.0.1",
+    "events": "^3.3.0",
+    "pouchdb-browser": "^8.0.1",
     "pretty-bytes": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,6 +32,7 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
     "react-tabs": "^6.0.2",
+    "use-pouchdb": "^2.0.2",
     "uuid": "^9.0.1",
     "web-vitals": "^3.5.0"
   },

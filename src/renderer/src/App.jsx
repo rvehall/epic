@@ -1,13 +1,17 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import PouchDB from 'pouchdb-browser';
 
 import Request from './components/Request';
 import Response from './components/Response';
+import History from './components/History';
 
 import AppContext from './AppContext';
 import NavBar from './components/Navbar';
 
 import './App.css';
+
+const db = new PouchDB('epic');
 
 const initialState = {
   response: {},
@@ -29,26 +33,31 @@ const initialState = {
       valueItem: '',
     },
   ],
-  body: '{\n\t\n}'
+  body: '{\n\t\n}',
+  history: []
 };
 function reducer(state, action) {
   switch (action.type) {
     case 'setResponse':
-      return { ...state, response: action.payload }
+      return { ...state, response: action.payload };
     case 'setLoading':
-      return { ...state, loading: action.payload }
+      return { ...state, loading: action.payload };
     case 'setKeyPair':
-      return { ...state, keyPair: action.payload }
+      return { ...state, keyPair: action.payload };
     case 'setUrl':
-      return { ...state, url: action.payload }
+      return { ...state, url: action.payload };
     case 'setRequest':
-      return { ...state, reqMethod: action.payload }
+      return { ...state, reqMethod: action.payload };
     case "setQueryParams":
       return { ...state, queryParams: action.payload,  }
     case "setHeaders":
-      return { ...state, headers: action.payload }
+      return { ...state, headers: action.payload };
     case "setBody":
-      return { ...state, body: action.payload }
+      return { ...state, body: action.payload };
+    case 'addToHistory':
+      return { ...state, history: [ ...state.history, action.payload ] };
+    case 'setHistory':
+      return { ...state, history: action.payload };
     default:
       return state
   }
@@ -59,12 +68,17 @@ const App = () => {
 
   return (
     <>
-      <AppContext.Provider value={{ state, dispatch }}>
+      <AppContext.Provider value={{ state, dispatch, db }}>
           <NavBar />
           <main component="main" sx={{ p: 3 }}>
-            <div className='container'>
-              <Request />
-              <Response />
+            <div className='container parent'>
+              <div className='left'>
+                <History/>
+              </div>
+              <div className='right'>
+                <Request />
+                <Response />
+              </div>
             </div>
           </main>
       </AppContext.Provider>

@@ -8,7 +8,7 @@ import UrlEditor from './Request/UrlEditor';
 import RequestTabs from "./Request/RequestTabs";
 
 export default function Request() {
-    const { state, dispatch } = useContext(AppContext)
+    const { state, dispatch, db } = useContext(AppContext);
 
     const handleOnInputSend = async (e) => {
         dispatch({ type: "setLoading", payload: true });
@@ -23,14 +23,23 @@ export default function Request() {
         }
 
         try {
-            const response = await axios({
+            const options = {
                 url: state.url,
                 method: state.reqMethod,
                 params: convertKeyValueToObject(state.queryParams),
                 headers: convertKeyValueToObject(state.headers),
                 data,
-            });
+            };
+
+            const response = await axios(options);
+
             dispatch({ type: "setResponse", payload: response });
+            const item = state.history.filter(item => item.url === state.url && item.method === state.reqMethod);
+            console.log("item", item);
+            if(item.length == 0){
+                dispatch({ type: "addToHistory", payload: options});
+                db.post(options);
+            }
         } catch (e) {
             dispatch({ type: "setResponse", payload: e });
         }
