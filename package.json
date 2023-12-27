@@ -2,17 +2,14 @@
   "name": "EPIC",
   "private": true,
   "version": "0.0.0",
-  "main": "./out/main/main.js",
+  "main": "./dist/main/main.js",
   "description": "EPIC is an Electron Postman/Insomnia Clone",
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "electron-vite dev -w",
-    "build": "electron-vite build",
-    "preview": "electron-vite preview",
-    "electron:dev": "cross-env IS_DEV=true electron-forge start",
-    "electron:build": "electron-forge make",
-    "electron:package": "electron-forge package",
-    "electron:publish": "electron-forge publish"
+    "start": "electron-vite preview --outDir=dist",
+    "dev": "electron-vite dev --outDir=dist",
+    "package": "electron-vite build --outDir=dist && electron-forge package",
+    "publish": "electron-vite build --outDir=dist && electron-forge make"
   },
   "dependencies": {
     "@codemirror/commands": "6.3.2",

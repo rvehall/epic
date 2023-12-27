@@ -21,7 +21,7 @@ function createWindow() {
   // Vite DEV server URL
   mainWindow.loadURL('http://localhost:5173');
   mainWindow.on('closed', () => mainWindow = null);
-  // mainWindow.removeMenu(); // Optional
+  mainWindosw.removeMenu(); // Optional
 }
 
 app.whenReady().then(() => {
