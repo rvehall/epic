@@ -14,14 +14,18 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
-      webSecurity: false
+      webSecurity: true
     }
   });
 
-  // Vite DEV server URL
-  mainWindow.loadURL('http://localhost:5173');
-  mainWindow.on('closed', () => mainWindow = null);
-  mainWindosw.removeMenu(); // Optional
+  mainWindow.setMenuBarVisibility(false);
+
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.loadURL('http://localhost:5173');
+    mainWindow.on('closed', () => mainWindow = null);
+  } else {
+    mainWindow.loadFile(path.join(__dirname, '../renderer', 'index.html'));
+  }
 }
 
 app.whenReady().then(() => {

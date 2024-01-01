@@ -9,7 +9,8 @@
     "start": "electron-vite preview --outDir=dist",
     "dev": "electron-vite dev --outDir=dist",
     "package": "electron-vite build --outDir=dist && electron-forge package",
-    "publish": "electron-vite build --outDir=dist && electron-forge make"
+    "make": "electron-vite build --outDir=dist && electron-forge make",
+    "publish": "electron-vite build --outDir=dist && electron-forge publish"
   },
   "dependencies": {
     "@codemirror/commands": "6.3.2",
@@ -50,6 +51,11 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-electron": "^0.15.5",
+    "vite-plugin-electron-renderer": "^0.14.5"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
   }
 }
