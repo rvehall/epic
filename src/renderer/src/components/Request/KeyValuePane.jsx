@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import KeyValueEditor from './KeyValueEditor';
+import { isEmpty } from '../../utils/helpers';
 
 export default function KeyValuePane({ paneValue, setPaneValue }) {
   const onKeyPairAdd = () => {
@@ -43,7 +44,7 @@ export default function KeyValuePane({ paneValue, setPaneValue }) {
   return (
     <>
       <div className=''>
-        {renderedList}
+        { !isEmpty(paneValue) && renderedList}
         <button
           className="add-button"
           onClick={onKeyPairAdd}>Add</button>

@@ -20,13 +20,18 @@ export default function Histroy(props) {
 
       fetchHistory();
     }, [])
+
+    const handleSelectItem = (item) => {
+        dispatch({ type: 'setCurrentItem', payload: item })
+    }
+
     return (<>
-        <h1>History</h1>
         {state.history.length > 0 && state.history.map(item => {
             return (
                 <div key={item.url} className="parent">
                     <div className="method left">{item.method} </div>
                     <div className="url right">{item.url}</div>
+                    <button type="button" onClick={() => handleSelectItem(item)}>Select</button>
                 </div>
                 )
         })}

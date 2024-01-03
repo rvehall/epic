@@ -33,6 +33,7 @@ const RequestTabs = ({
             setPaneValue: setBody,
         },
     ];
+    
     return (
         <Tabs forceRenderTabPanel selectedTabClassName="selected-tab" className="tabs">
             <TabList className="tab-list">

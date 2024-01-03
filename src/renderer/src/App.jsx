@@ -9,6 +9,8 @@ import History from './components/History';
 import AppContext from './AppContext';
 import NavBar from './components/Navbar';
 
+import { isEmpty } from './utils/helpers';
+
 import './App.css';
 
 const db = new PouchDB('epic');
@@ -58,6 +60,18 @@ function reducer(state, action) {
       return { ...state, history: [ ...state.history, action.payload ] };
     case 'setHistory':
       return { ...state, history: action.payload };
+    case 'setCurrentItem':
+      const item = action.payload;
+      const newState = {
+          ...state,
+          url: item.url,
+          reqMethod: item.method,
+          queryParams: isEmpty(item.params) ? initialState.queryParams : item.params,
+          headers: isEmpty(item.headers) ? initialState.headers :  item.headers,
+          body: isEmpty(item.body) ? initialState.body :  item.data,
+      }
+      
+      return { ...newState }
     default:
       return state
   }

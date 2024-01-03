@@ -14,16 +14,16 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
-      webSecurity: true
+      webSecurity: false
     }
   });
 
-  mainWindow.setMenuBarVisibility(false);
-
+  
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:5173');
     mainWindow.on('closed', () => mainWindow = null);
   } else {
+    mainWindow.setMenuBarVisibility(false);
     mainWindow.loadFile(path.join(__dirname, '../renderer', 'index.html'));
   }
 }

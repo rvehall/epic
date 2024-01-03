@@ -2,7 +2,7 @@ import { useContext } from "react";
 import axios from 'axios';
 
 import AppContext from "../AppContext";
-import { convertKeyValueToObject } from '../utils/helpers';
+import { convertKeyValueToObject, deepEqual } from '../utils/helpers';
 
 import UrlEditor from './Request/UrlEditor';
 import RequestTabs from "./Request/RequestTabs";
@@ -10,7 +10,7 @@ import RequestTabs from "./Request/RequestTabs";
 export default function Request() {
     const { state, dispatch, db } = useContext(AppContext);
 
-    const handleOnInputSend = async (e) => {
+    const handleSubmit = async (e) => {
         dispatch({ type: "setLoading", payload: true });
         e.preventDefault();
         const requestBody = state.body.toString();
@@ -23,11 +23,16 @@ export default function Request() {
         }
 
         try {
+            const convertedHeaders = convertKeyValueToObject(state.headers);
+
             const options = {
                 url: state.url,
                 method: state.reqMethod,
                 params: convertKeyValueToObject(state.queryParams),
-                headers: convertKeyValueToObject(state.headers),
+                headers: {
+                    ...convertedHeaders,
+                    "Cache-Control": "no-cache",
+                },
                 data,
             };
 
@@ -35,8 +40,10 @@ export default function Request() {
 
             dispatch({ type: "setResponse", payload: response });
             const item = state.history.filter(item => item.url === state.url && item.method === state.reqMethod);
-            console.log("item", item);
-            if(item.length == 0){
+            const stateful = { url: state.url, method: state.reqMethod, params: state.requestParams, headers: state.headers, body: state.body };
+            const isEqual = deepEqual(item, stateful);
+            
+            if(isEqual){
                 dispatch({ type: "addToHistory", payload: options});
                 db.post(options);
             }
@@ -71,14 +78,14 @@ export default function Request() {
                 setUrl={setUrl}
                 reqMethod={state.reqMethod}
                 setReqMethod={setReqMethod}
-                onInputSend={handleOnInputSend}
+                onInputSend={handleSubmit}
             />
             <RequestTabs
                 queryParams={state.queryParams}
                 setQueryParams={(e) => setQueryParams(e)}
                 headers={state.headers}
                 setHeaders={(e) => setHeaders(e)}
-                body={'{\n\t\n}'}
+                body={state.body}
                 setBody={setBody}
             />
         </>
